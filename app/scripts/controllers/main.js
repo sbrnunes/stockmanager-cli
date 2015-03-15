@@ -14,4 +14,6 @@ angular.module('stockmanagerApp')
       'AngularJS',
       'Karma'
     ];
+
+    $('.carousel').carousel();
   });

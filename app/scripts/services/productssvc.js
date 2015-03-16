@@ -10,11 +10,24 @@
 angular.module('stockmanagerApp')
   .service('productsService', function ($http) {
 
-    this.loadAllProducts = function (callback) {
+    function loadStockForProduct(product)
+    {
+      // Simple GET load Stock For Product :
+      $http.get('http://localhost:8090/stock/' + product.sqlid).
+        success(function(data, status, headers, config) {
+          return data.stock;
+        }).
+        error(function(data, status, headers, config) {
+          return 0;
+        });
+    };
+
+    this.loadAllProducts = function() {
       console.log('Loading all products');
       $http.get('http://localhost:8080/product').
         success(function (data, status, headers, config)
         {
+          //var stock = loadStockForProduct();
           return data;
         }).
         error(function (data, status, headers, config)

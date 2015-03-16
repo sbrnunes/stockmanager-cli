@@ -48,15 +48,10 @@
 
     </header>
 
-    <div class="page-header">
-      <p>Page Header</p>
-    </div>
-
     <nav>
-      <ul class="nav nav-tabs nav-justified">
-        <li role="presentation"><a href="#/">Home</a></li>
-        <li role="presentation"><a href="#/products">Products</a></li>
-        <li role="presentation"><a href="#/admin">Admin</a></li>
+      <ul class="nav nav-tabs">
+        <li role="presentation" class="active" data-toggle="tab"><a href="#/">Home</a></li>
+        <li role="presentation" data-toggle="tab"><a href="#/products">Products</a></li>
       </ul>
     </nav>
 
@@ -97,11 +92,13 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
-        <script src="scripts/controllers/products.js"></script>
-        <!-- endbuild -->
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/about.js"></script>
+    <script src="scripts/controllers/products.js"></script>
+    <script src="scripts/services/productssvc.js"></script>
+    <script src="scripts/services/categoriessvc.js"></script>
+    <!-- endbuild -->
   </body>
 </html>

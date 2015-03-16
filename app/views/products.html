@@ -1,6 +1,18 @@
-<div>
-
-
-
-
+<div class="productsPageLayout">
+  <aside class="leftColumn">
+    <div ng-init="entities = loadCategories()">
+    <ul class="nav nav-pills nav-stacked">
+      <li role="presentation" class="active">
+        <a href="" ng-click="loadAllProducts()" data-toggle="pill" >All Products</a>
+      </li>
+      <li role="presentation" ng-repeat="category in entities">
+        <a href="" ng-click="loadProductsByCategory('{{category.id}}')" data-toggle="pill">{{category.name}}</a>
+      </li>
+    </ul>
+  </aside>
+  <div class="rightColumn">
+  &nbsp;
+  </div>
 </div>
+
+

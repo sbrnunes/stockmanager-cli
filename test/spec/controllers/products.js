@@ -5,18 +5,19 @@ describe('Controller: ProductsCtrl', function () {
   // load the controller's module
   beforeEach(module('stockmanagerApp'));
 
-  var ProductsCtrl,
-    scope;
+  var controller, scope, categoriesService, productsService;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
-    scope = $rootScope.$new();
-    ProductsCtrl = $controller('ProductsCtrl', {
-      $scope: scope
-    });
+  beforeEach(inject(function ($controller, $rootScope, categoriesSvc, productsSvc) {
+    scope = $rootScope.new();
+    controller = $controller("ProductsCtrl", { $scope: scope, $categoriesService: categoriesSvc, $productsServices: productsSvc });
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(scope.awesomeThings.length).toBe(3);
-  });
+
+  //it('should load an array with 3 categories', function () {
+  //    expect(categoriesService.loadCategories().length).toBe(2);
+  //  });
+
+
+
 });

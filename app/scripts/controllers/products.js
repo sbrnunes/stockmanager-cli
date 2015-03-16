@@ -10,12 +10,6 @@
 angular.module('stockmanagerApp')
   .controller('ProductsCtrl', function ($scope, categoriesService, productsService) {
 
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-
     $scope.loadCategories = function() {
       return categoriesService.loadCategories();
     } ;

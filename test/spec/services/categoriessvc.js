@@ -11,8 +11,8 @@ describe('Service: CategoriesSvc', function () {
     CategoriesSvc = _CategoriesSvc_;
   }));
 
-  it('should do something', function () {
-    expect(!!CategoriesSvc).toBe(true);
-  });
+  //it('should do something', function () {
+  //  expect(!!CategoriesSvc).toBe(true);
+  //});
 
 });

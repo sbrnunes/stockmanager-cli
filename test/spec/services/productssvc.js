@@ -11,8 +11,8 @@ describe('Service: ProductsSvc', function () {
     ProductsSvc = _ProductsSvc_;
   }));
 
-  it('should do something', function () {
-    expect(!!ProductsSvc).toBe(true);
-  });
+  //it('should do something', function () {
+  //  expect(!!ProductsSvc).toBe(true);
+  //});
 
 });

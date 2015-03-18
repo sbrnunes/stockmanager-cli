@@ -38,6 +38,20 @@ angular.module('stockmanagerApp')
       return deferred.promise;
     };
 
+    function loadStockForProduct(product)
+    {
+      //todo: use promises (see methods above)
+
+      // Simple GET load Stock For Product :
+      $http.get('http://localhost:8090/stock/' + product.sqlid).
+        success(function(data, status, headers, config) {
+          return angular.fromJson(data).stock;
+        }).
+        error(function(data, status, headers, config) {
+          return 0;
+        });
+    };
+
     function process(data) {
       return data.content.map(function (item) {
         return {

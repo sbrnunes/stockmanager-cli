@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js">
+<html ng-app="stockmanagerApp" class="no-js">
   <head>
     <meta charset="utf-8">
     <title></title>
@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="stockmanagerApp">
+  <body ng-controller="AppCtrl">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -49,9 +49,10 @@
     </header>
 
     <nav>
-      <ul class="nav nav-tabs">
-        <li role="presentation" class="active" data-toggle="tab"><a href="#/">Home</a></li>
-        <li role="presentation" data-toggle="tab"><a href="#/products">Products</a></li>
+      <ul ng-controller="MainTabCtrl" class="nav nav-tabs">
+        <li ng-repeat="tab in tabs" ng-class="{active:isActive(tab.url)}" role="presentation" data-toggle="tab">
+          <a href="{{tab.url}}">{{tab.name}}</a>
+        </li>
       </ul>
     </nav>
 
@@ -64,18 +65,6 @@
         <p>Under construction...</p>
       </div>
     </footer>
-
-
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-     <script>
-       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
-       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
-       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
-       }(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-       ga('create', 'UA-XXXXX-X');
-       ga('send', 'pageview');
-    </script>
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
@@ -94,11 +83,12 @@
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
-    <script src="scripts/controllers/main.js"></script>
-    <script src="scripts/controllers/about.js"></script>
+    <script src="scripts/controllers/home.js"></script>
     <script src="scripts/controllers/products.js"></script>
+    <script src="scripts/controllers/maintab.js"></script>
     <script src="scripts/services/productssvc.js"></script>
     <script src="scripts/services/categoriessvc.js"></script>
+    <script src="scripts/controllers/app.js"></script>
     <!-- endbuild -->
   </body>
 </html>

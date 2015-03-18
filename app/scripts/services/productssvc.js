@@ -8,31 +8,44 @@
  * Service in the stockmanagerApp.
  */
 angular.module('stockmanagerApp')
-  .service('productsService', function ($http) {
+  .service('ProductsService', function ($http, $log, $q) {
 
-    this.loadAllProducts = function (callback) {
-      console.log('Loading all products');
-      $http.get('http://localhost:8080/product').
-        success(function (data, status, headers, config)
-        {
-          return data;
-        }).
-        error(function (data, status, headers, config)
-        {
-          alert(error);
+    this.loadAllProducts = function () {
+      var deferred = $q.defer();
+      $http.get('http://localhost:8080/product')
+        .success(function (data) {
+          $log.debug(data);
+          deferred.resolve(process(data));
+        })
+        .error(function (msg, code) {
+          $log.error(msg, code);
+          deferred.reject(msg);
         });
+      return deferred.promise;
     };
 
     this.loadProductsByCategory = function (category) {
-      console.log('Loading products for ' + category);
-      $http.get('http://localhost:8080/product/' + category).
-        success(function (data, status, headers, config)
-        {
-          return data;
-        }).
-        error(function (data, status, headers, config)
-        {
-          alert(error);
+      var deferred = $q.defer();
+      $http.get('http://localhost:8080/product?category=' + category)
+        .success(function (data) {
+          $log.debug(data);
+          deferred.resolve(process(data));
+        })
+        .error(function (msg, code) {
+          $log.error(msg, code);
+          deferred.reject(msg);
         });
+      return deferred.promise;
     };
+
+    function process(data) {
+      return data.content.map(function (item) {
+        return {
+          name: item.name,
+          price: item.price,
+          productreference: item.productreference,
+          image: item.image
+        }
+      });
+    }
   });

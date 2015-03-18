@@ -8,10 +8,11 @@
  * Service in the stockmanagerApp.
  */
 angular.module('stockmanagerApp')
-  .service('categoriesService', function () {
+  .service('CategoriesService', function ($log) {
 
     this.loadCategories = function() {
-      console.log('Loading categories');
+      $log.debug('Loading categories');
+
       return [
             {'id':'category1','name':'Category 1'},
             {'id':'category2','name':'Category 2'}

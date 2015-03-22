@@ -12,7 +12,8 @@ angular.module('stockmanagerApp')
 
     $scope.tabs = [
       { 'url' : '#/', 'name' : 'Home' },
-      { 'url' : '#/products', 'name' : 'Products' }
+      { 'url' : '#/products', 'name' : 'Products' },
+      { 'url' : '#/sells', 'name' : 'Sells' }
     ];
 
     $scope.isActive = function(url) {

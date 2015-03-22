@@ -10,10 +10,21 @@
 angular.module('stockmanagerApp')
   .controller('ProductsCtrl', function ($scope, $log, CategoriesService, ProductsService) {
 
+    $scope.gridOptions = {
+            enableSorting: true,
+            columnDefs: [
+              { name:'Reference', field: 'productreference', enableCellEdit:false},
+              { name:'Name', field: 'name', enableCellEdit:true },
+              { name:'Cost', field: 'cost', enableCellEdit:true },
+              { name:'Price', field: 'price', enableCellEdit:true },
+              { name:'Quantity', field: '', enableCellEdit:false }
+            ]
+          };
+
     $scope.loadAllProducts = function () {
       ProductsService.loadAllProducts().then(
         function (payload) {
-          $scope.products = payload;
+          $scope.gridOptions.data = payload;
         },
         function (errorPayload) {
           $log.error('Could not load products', errorPayload);
@@ -24,7 +35,7 @@ angular.module('stockmanagerApp')
     $scope.loadProductsByCategory = function (category) {
       ProductsService.loadProductsByCategory(category).then(
         function (payload) {
-          $scope.products = payload;
+          $scope.gridOptions.data = payload;
         },
         function (errorPayload) {
           $log.error('Could not load products', errorPayload);

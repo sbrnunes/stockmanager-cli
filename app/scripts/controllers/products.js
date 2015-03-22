@@ -24,6 +24,7 @@ angular.module('stockmanagerApp')
     $scope.loadAllProducts = function () {
       ProductsService.loadAllProducts().then(
         function (payload) {
+          $log.debug(payload);
           $scope.gridOptions.data = payload;
         },
         function (errorPayload) {

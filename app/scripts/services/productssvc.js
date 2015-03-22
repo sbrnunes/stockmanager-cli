@@ -38,30 +38,22 @@ angular.module('stockmanagerApp')
       return deferred.promise;
     };
 
-    function loadStockForProduct(productSqlId) {
-      var deferred = $q.defer();
-
+    this.loadStockForProduct = function (product) {
       // Simple GET load Stock For Product :
-      $http.get('http://localhost:8090/stock/' + productSqlId).
+      $http.get('http://localhost:8090/stock/' + product.sqlid).
         success(function (data, status, headers, config) {
 
           $log.debug(data);
-          deferred.resolve(
-            function (data) {
               var sqlProduct = angular.fromJson(data);
               if (sqlProduct != undefined) {
-                return sqlProduct.stock;
+                product.stock = stock;
               }
-            }
-          );
         }).
         error(function (data, status, headers, config) {
-          deferred.resolve(function () {
-            return 0;
-          });
+          $log.debug('Stock: 0 ');
+          product.stock = 0;
         });
-      return deferred.promise;
-    }
+    };
 
     function process(data) {
       return data.content.map(function (item) {
@@ -70,13 +62,10 @@ angular.module('stockmanagerApp')
           price: item.price,
           productreference: item.productreference,
           image: item.image,
-          stock: loadStockForProduct(item.sqlid).then(
-            function (stock) {
-              $log.debug('Stock:' + stock);
-              return stock;
-            }
-          )
+          sqlid: item.sqlid,
+          stock: -1
         }
       });
     }
+
   });

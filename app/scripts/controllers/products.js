@@ -17,15 +17,18 @@ angular.module('stockmanagerApp')
               { name:'Name', field: 'name', enableCellEdit:true },
               { name:'Cost', field: 'cost', enableCellEdit:true },
               { name:'Price', field: 'price', enableCellEdit:true },
-              { name:'Quantity', field: '', enableCellEdit:false }
+              {name: 'Quantity', field: 'stock', enableCellEdit: false}
             ]
           };
 
     $scope.loadAllProducts = function () {
       ProductsService.loadAllProducts().then(
         function (payload) {
-          $log.debug(payload);
           $scope.gridOptions.data = payload;
+
+          for (var itemIndex = 0; itemIndex < payload.length; itemIndex++) {
+            ProductsService.loadStockForProduct(payload[itemIndex]);
+          }
         },
         function (errorPayload) {
           $log.error('Could not load products', errorPayload);
